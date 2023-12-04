@@ -23,7 +23,7 @@ async def chat(
     email: str = Query(..., description="User's email address"),
     model: ModelInfo = Depends(get_model)
 ):
-    PROMPT = f"""Title: 'Dialogue between a Non-Technical User and an AI Tech Support Assistant'
+    PROMPT = """Title: 'Dialogue between a Non-Technical User and an AI Tech Support Assistant'
 
 Background: The AI Assistant specializes in providing tech support to non-technical users. They are knowledgeable, helpful, and efficient, always ready to assist the User with their questions or problems within the constraints of their access level. The AI Assistant aims to provide easy-to-understand solutions tailored to the user's needs.
 
