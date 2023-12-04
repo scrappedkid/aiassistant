@@ -22,8 +22,7 @@ class ModelInfo:
         )
 
         stdout, _ = await result.communicate()
-        response = stdout.decode("utf-8").split(prompt)[1]
-        return response
+        return stdout.decode("utf-8").split(prompt)[1]
 
 async def download_model():
     url = "https://raw.githubusercontent.com/shawwn/llama-dl/56f50b96072f42fb2520b1ad5a1d6ef30351f23c/llama.sh"
@@ -57,9 +56,10 @@ def get_model_size() -> int:
     Retrieve and validate the model size from the MODEL_SIZE environment variable.
     """
     model_size = int(os.getenv("MODEL_SIZE", "7"))
-    if model_size not in [7, 13, 30, 65]:
+    if model_size in {7, 13, 30, 65}:
+        return model_size
+    else:
         raise ValueError("Invalid model size. Available model sizes: 7, 13, 30, 65")
-    return model_size
 
 async def prepare_model_instance() -> Tuple[int, ModelInfo]:
     model_size = get_model_size()
